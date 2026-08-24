@@ -54,4 +54,19 @@ Khối này nhận nguồn 5V trực tiếp từ cáp USB trong lúc bạn nạp
 
 
 
+=================================================
+chỉnh sủa lần 2
+ở mạch H
+buck 24V → 5V hơn LM7805
+
+
+
+
+
+
+
+
+
+
+
 
