@@ -45,7 +45,7 @@ Khối này nhận nguồn 5V trực tiếp từ cáp USB trong lúc bạn nạp
 | --- | --- | --- | --- |
 | *Vi điều khiển* | ESP32 (NodeMCU hoặc WROOM) | 1 | Đọc biến trở, nút nhấn và gửi data |
 | *Module RF* | NRF24L01 | 1 | Gửi data sang STM32 (Nhớ hàn tụ lọc 10µF) |
-| *Nguồn cấp* | Pin Li-ion 18650 (3.7V) + Đế | 1 | Nguồn di động cho tay cầm |
+| *Nguồn cấp* | Pin Li-ion ICR18650 (3.7V) + Đế | 1 | Nguồn di động cho tay cầm |
 | *Mạch sạc & Bảo vệ* | TP4056 (Bản có DW01A + 8205A) | 1 | Bắt buộc dùng bản có IC bảo vệ xả sâu |
 | *IC LDO Hạ áp* | AP2112K-3.3 (hoặc LDO dòng cao) | 1 | Dòng $I_{out}$ tối thiểu 600mA để gánh dòng đỉnh ESP32 |
 | *Giao diện điều khiển* | Biến trở xoay 10kΩ | 1 | Nối vào ADC để chỉnh tốc độ |
