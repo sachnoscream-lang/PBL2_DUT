@@ -107,7 +107,7 @@ Khối này đã loại bỏ hoàn toàn diode 1N4007 chậm chạp, giữ lại
 | **Module RF** | NRF24L01 | 1 | Gửi data sang STM32 (Cũng cần hàn thêm tụ 10µF sát chân nguồn). |
 | **Nguồn di động** | Pin Li-ion 18650 (3.7V) + Đế | 1 | Cấp năng lượng cho tay cầm. |
 | **Mạch sạc pin** | TP4056 (Bản có bảo vệ) | 1 | Có chip DW01A bảo vệ xả sâu, sạc qua cổng Type-C/MicroUSB. |
-| **LDO Hạ áp** | AMS1117-3.3 hoặc AP2112K | 1 | Ổn áp từ 3.7V-4.2V của pin xuống 3.3V cấp cho ESP32 và NRF24L01. |
+| **LDO Hạ áp** | AP2112K-3.3(khó hàn nhưng tốt) hoặc HT7833( dễ hàn nhưng khó ổn định) | 1 | Ổn áp từ 3.7V-4.2V của pin xuống 3.3V cấp cho ESP32 và NRF24L01. |
 | **Giao diện** | Biến trở 10kΩ | 1 | Vặn tay điều chỉnh tốc độ PWM. |
 | **Nút nhấn** | Tact switch (Nút nhả) | 4 | Gán các chức năng: Start/Stop, Đảo chiều, v.v. |
 
