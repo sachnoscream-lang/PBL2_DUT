@@ -1,32 +1,5 @@
 # PBL2_DUT
 
-
-màn TFT LCD ili9488 320x480
-(có touch screen)
-
-nrf
-vet6 kêt snoosi vs LCD hiển thị thống số
-
-esp + nrf tay cầm 
-biến trở 
-adapter 24V 
-
-LM7805 
-tụ 1000U
-
----------------------------------------------
-tấm đông 
-in mạch
-fecl3 bột sắt
-TFT LCD ili9488 320x480
- nrf24l01
-
-
-
-
-IRF9540 2 con 
-IRF540 2 con
-
 ### 1. Khối Công Suất (Cầu H Rời - Nguồn Adapter 24V)
 
 Đây là khối gánh dòng trực tiếp, cần linh kiện chính hãng hoặc chất lượng tốt.
