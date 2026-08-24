@@ -1,6 +1,6 @@
 # PBL2_DUT
 
-### 1. Khối Công Suất (Cầu H Rời - Nguồn Adapter 24V)
+### 1. Khối Công Suất (Cầu H Rời - Nguồn Adapter 24V 4A)
 
 Đây là khối gánh dòng trực tiếp, cần linh kiện chính hãng hoặc chất lượng tốt.
 
