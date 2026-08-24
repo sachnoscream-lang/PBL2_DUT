@@ -1,12 +1,12 @@
 # PBL2_DUT
 động cơ 12-24V 20W 1A
-
+adapter 24V 4A
 
 
 =================================================
 
 
-### 1. Khối Cầu H & Nguồn Cấp (Phần "Cơ bắp")
+### 1. Khối Cầu H & Nguồn Cấp 
 
 Khối này đã loại bỏ hoàn toàn diode 1N4007 chậm chạp, giữ lại cặp BJT Push-Pull sống còn và dùng 2 module Buck để tối ưu nhiệt lượng.
 
