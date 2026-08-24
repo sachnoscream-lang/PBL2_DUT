@@ -35,8 +35,7 @@ Khối này nhận nguồn 5V trực tiếp từ cáp USB trong lúc bạn nạp
 | *Tụ lọc RF* | 10µF - 100µF (Tantalum/Gốm) | 1 | Hàn trực tiếp sát chân VCC/GND của NRF24L01 |
 | *Cảm biến đếm vật* | E18-D80NK (NPN) | 1 | Mắt phát hiện phôi trên băng chuyền |
 | *Cách ly cảm biến* | PC817 + Trở 10kΩ + Tụ 10nF | 1 | Chuyển mức logic từ cảm biến về 3.3V cho MCU |
-| *Bảo vệ USB*
-(Tùy chọn) | Module cách ly ADUM3160 | 1 | Mắc giữa cổng USB laptop và mạch để chống Ground Loop |
+
 
 ---
 
