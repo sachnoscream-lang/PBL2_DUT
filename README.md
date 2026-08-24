@@ -75,7 +75,7 @@ Khối này đã loại bỏ hoàn toàn diode 1N4007 chậm chạp, giữ lại
 | **BJT NPN** | S8050 | 4 | Nửa trên của tầng đệm Push-pull (bơm dòng mở Gate). |
 | **BJT PNP** | S8550 | 4 | Nửa dưới của tầng đệm Push-pull (hút dòng xả Gate). |
 | **Cách ly quang** | PC817 | 4 | Cách ly tín hiệu, bảo vệ an toàn tuyệt đối cho vi điều khiển. |
-| **Diode dập xung** | SS34 (SMD) hoặc UF4007 | 4 | (Thay thế 1N4007) Xả dòng cảm kháng từ động cơ 24V cực nhanh. |
+| **Diode dập xung** | 1N5822 | 4 | (Thay thế 1N4007) Xả dòng cảm kháng từ động cơ 24V cực nhanh. |
 | **Diode Zener** | 1N4742 (12V - 1W) | 4 | Ghim điện áp $V_{GS}$ ở mức 12V, chống nổ Gate MOSFET. |
 | **Module Buck 1** | LM2596 (24V $\rightarrow$ 12V) | 1 | Cấp nguồn 12V tiêu chuẩn cho dàn BJT Push-Pull. |
 | **Module Buck 2** | LM2596 (24V $\rightarrow$ 5V) | 1 | Cấp nguồn cho khối STM32, màn hình và cảm biến (khi chạy độc lập). |
