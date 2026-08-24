@@ -1,4 +1,5 @@
 # PBL2_DUT
+động cơ 12-24V 20W 1A
 
 ### 1. Khối Công Suất (Cầu H Rời - Nguồn Adapter 24V 4A)
 
