@@ -78,7 +78,6 @@ Khối này đã loại bỏ hoàn toàn diode 1N4007 chậm chạp, giữ lại
 | **Diode dập xung** | 1N5822 | 4 | (Thay thế 1N4007) Xả dòng cảm kháng từ động cơ 24V cực nhanh. |
 | **Diode Zener** | 1N4742 (12V - 1W) | 4 | Ghim điện áp $V_{GS}$ ở mức 12V, chống nổ Gate MOSFET. |
 | **Module Buck 1** | LM2596 (24V $\rightarrow$ 12V) | 1 | Cấp nguồn 12V tiêu chuẩn cho dàn BJT Push-Pull. |
-| **Module Buck 2** | LM2596 (24V $\rightarrow$ 5V) | 1 | Cấp nguồn cho khối STM32, màn hình và cảm biến (khi chạy độc lập). |
 | **Tụ hóa (Lọc)** | 1000µF / 35V - 50V | 2 | Lọc nguồn tổng 24V, đặt càng sát mạch cầu H càng tốt. |
 | **Tụ gốm / Kẹo** | 104 (100nF) | 6 | Lọc nhiễu cao tần ở các chân cấp nguồn. |
 | **Điện trở** | 22Ω - 47Ω (1/4W) | 4 | Nối từ điểm chung BJT vào chân Gate chống dao động. |
