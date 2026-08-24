@@ -13,7 +13,7 @@
 | *Cách ly quang* | PC817 | 4 | Bắt buộc để bảo vệ an toàn cho ThinkPad T440s |
 | *Diode Zener* | 1N4742 (12V - 1W) | 4 | Ghim áp $V_{GS}$ bảo vệ Gate MOSFET |
 | *Diode dập xung* | SS34 (SMD) hoặc 1N5822 / UF4007 | 4 | Mắc song song D-S dập xung ngược động cơ |
-| *IC Ổn áp* | LM7812 (TO-220) | 1 | Lấy 24V tạo mức 12V tham chiếu cho Push-pull |
+| *IC Ổn áp* | buck 24V → 12V | 1 | Lấy 24V tạo mức 12V tham chiếu cho Push-pull |
 | *Tụ hóa (Bulk cap)* | 1000µF / 35V - 50V | 2 | Lọc nguồn tổng 24V (đặt sát cầu H) |
 | *Tụ gốm* | 100nF (104) | 6 | Lọc nhiễu cao tần cho 7812 và chân cấp nguồn |
 | *Trở Gate ($R_g$)* | 22Ω - 47Ω (1/4W) | 4 | Chống tự kích dao động chân Gate |
