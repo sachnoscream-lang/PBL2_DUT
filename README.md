@@ -121,24 +121,87 @@ MOSFET có tụ ký sinh $C_{iss}$ lớn. Khối BJT đệm dòng đóng vai tr�
 * **`U19 (Domino 2 chân)`:** Cổng kết nối đưa điện áp đảo chiều ra 2 cực của động cơ DC (`MOTO1`, `MOTO2`).
 
 ---
+Để thấy rõ bức tranh toàn cảnh, ta hãy bóc tách chi tiết từng mili-ampe dòng điện chạy qua các chân linh kiện trong chu trình **Quay Thuận** ($D2=1, D1=1$) và cơ chế **Dập dòng xả năng lượng** khi ngắt PWM.
 
-### 5. Nguyên Lý Vận Hành Tổng Thể
+---
 
-| Trạng thái mong muốn | Tín hiệu kích từ MCU | Tín hiệu sau Opto | Các FET dẫn | Dòng điện qua tải U19 |
-| --- | --- | --- | --- | --- |
-| **Quay thuận** | `D2 = 1`, `D1 = 1`<br>
+### Giai đoạn 1: Kích mở nửa Cầu H bên TRÁI (Kích dẫn P-MOSFET U17)
 
-<br>*(D0 = 0, D3 = 0)* | `S2 = 12V`, `S1 = 12V`<br>
+**1. Khối Cách ly (U26 - PC817):**
 
-<br>*(S0 = 0V, S3 = 24V)* | **U17** (P-Trái) & **Q12** (N-Phải) | $24\text{V} \rightarrow \text{U17} \rightarrow \text{MOTO2} \rightarrow \text{Động cơ} \rightarrow \text{MOTO1} \rightarrow \text{Q12} \rightarrow \text{GND}$ |
-| **Quay nghịch** | `D3 = 1`, `D0 = 1`<br>
+* MCU xuất tín hiệu mức cao ($3.3\text{V}$) vào chân $D2$.
+* Dòng điện từ MCU chạy qua điện trở hạn dòng $R20 (250\Omega) \rightarrow$ vào chân 1 (Anode LED) $\rightarrow$ thoát ra chân 2 (Cathode LED) $\rightarrow$ về $GND\_MCU$. LED bên trong phát sáng.
+* Phototransistor bên trong nhận ánh sáng và dẫn bão hòa: dòng điện chạy từ chân 4 (đang nối nguồn $24\text{V}$ qua trở treo $R22$) $\rightarrow$ dẫn thẳng qua chân 3 (nối về $12\text{V}$).
+* **Kết quả:** Điểm $S2$ bị kéo tụt từ $24\text{V}$ xuống mức **$12\text{V}$**.
 
-<br>*(D1 = 0, D2 = 0)* | `S3 = 12V`, `S0 = 12V`<br>
+**2. Khối Đệm dòng Push-Pull (Q3 / Q6):**
 
-<br>*(S1 = 0V, S2 = 24V)* | **U18** (P-Phải) & **Q2** (N-Trái) | $24\text{V} \rightarrow \text{U18} \rightarrow \text{MOTO1} \rightarrow \text{Động cơ} \rightarrow \text{MOTO2} \rightarrow \text{Q2} \rightarrow \text{GND}$ |
-| **Thả trôi (Coast)** | `D0 = D1 = D2 = D3 = 0` | `S0=S1=0V`, `S2=S3=24V` | Tất cả FET đều **TẮT** | Động cơ dừng tự do theo quán tính. |
-| **Hãm động năng (Brake)** | `D0 = D1 = 1` *(D2 = D3 = 0)* | `S0 = S1 = 12V` | **Q2** & **Q12** cùng **BẬT** | Ngắn mạch 2 cực động cơ xuống GND để hãm nhanh. |
-| **TRẠNG THÁI CẤM (Shoot-through)** | `D2 = D0 = 1` hoặc `D3 = D1 = 1` | Bật cùng lúc FET trên và FET dưới của cùng một nhánh | Cả 2 FET cùng nhánh dẫn | **Ngắn mạch trực tiếp 24V xuống GND $\rightarrow$ Cháy nổ FET tức thì.** |
+* Điểm $S2 = 12\text{V}$ cắm vào cực Base của cả $Q3$ (NPN) và $Q6$ (PNP):
+* $Q3$ (8050 NPN): Chân Emitter đang ở mức cao hơn Base $\rightarrow Q3$ **khóa ngắt hoàn toàn**.
+* $Q6$ (8550 PNP): Chân Emitter (nối với Gate của U17) có áp ban đầu $24\text{V}$, chân Base ở $12\text{V}$ ($V_{EB} > 0.7\text{V}$) $\rightarrow Q6$ **mở bão hòa**.
+
+
+* **Đường xả Gate:** Điện tích từ tụ ký sinh cực Gate của $U17$ phóng qua $R9 (47\Omega) \rightarrow$ đi từ Emitter sang Collector của $Q6 \rightarrow$ thoát về nguồn **$12\text{V}$**.
+* **Kết quả:** Điện áp chân Gate của $U17$ bị kéo tụt xuống mức **$12\text{V}$**.
+
+**3. Khối Động lực (P-MOSFET U17):**
+
+* Điện áp Source $V_S = 24\text{V}$, điện áp Gate $V_G = 12\text{V} \rightarrow$ Điện áp điều khiển đạt $V_{GS} = 12\text{V} - 24\text{V} = \mathbf{-12\text{V}}$.
+* Với $V_{GS} = -12\text{V}$ (âm hơn ngưỡng mở $V_{GS(th)}$), kênh dẫn $P$ mở toang: $U17$ chuyển sang trạng thái dẫn bão hòa hoàn toàn.
+* Cực Drain của $U17$ (điểm $MOTO2$) được nối thẳng lên đường nguồn **$24\text{V}$**.
+
+---
+
+### Giai đoạn 2: Kích mở nửa Cầu H bên PHẢI (Kích dẫn N-MOSFET Q12)
+
+**1. Khối Cách ly (U24 - PC817):**
+
+* MCU xuất tín hiệu mức cao ($3.3\text{V}$) vào chân $D1$.
+* Dòng kích chạy qua $R16 (250\Omega) \rightarrow$ làm sáng LED bên trong $U24$.
+* Phototransistor mở: kéo dòng từ nguồn $12\text{V}$ (chân 4) $\rightarrow$ tràn qua chân 3 $\rightarrow$ nạp vào điểm $S1$.
+* **Kết quả:** Điểm $S1$ dâng từ $0\text{V}$ lên mức **$12\text{V}$** (vượt qua điện trở xả $R18$).
+
+**2. Khối Đệm dòng Push-Pull (Q10 / Q14):**
+
+* Điểm $S1 = 12\text{V}$ cắm vào cực Base của $Q10$ (NPN) và $Q14$ (PNP):
+* $Q14$ (8550 PNP): Base cao hơn Emitter $\rightarrow Q14$ **khóa ngắt**.
+* $Q10$ (8050 NPN): Base nhận $12\text{V}$ trong khi Emitter đang ở $0\text{V}$ ($V_{BE} > 0.7\text{V}$) $\rightarrow Q10$ **mở bão hòa**.
+
+
+* **Đường nạp Gate:** Dòng từ nguồn $12\text{V}$ chạy qua Collector $\rightarrow$ sang Emitter của $Q10 \rightarrow$ qua trở hạn dòng $R13 (47\Omega) \rightarrow$ nạp thẳng vào chân Gate của $Q12$.
+* **Kết quả:** Chân Gate của $Q12$ được nạp đầy lên mức **$12\text{V}$**.
+
+**3. Khối Động lực (N-MOSFET Q12):**
+
+* Điện áp Gate $V_G = 12\text{V}$, điện áp Source $V_S = 0\text{V}$ ($GND$) $\rightarrow V_{GS} = \mathbf{+12\text{V}}$.
+* Kênh dẫn $N$ mở bão hòa hoàn toàn.
+* Cực Drain của $Q12$ (điểm $MOTO1$) được kéo sập thẳng xuống đường **$GND$ ($0\text{V}$)**.
+
+---
+
+### Giai đoạn 3: Dòng điện động lực chạy qua Động cơ
+
+Khi cả $U17$ và $Q12$ cùng mở:
+
+* **Hành trình dòng điện:**
+
+$$\text{Nguồn 24V} \longrightarrow \text{Chân S qua D của U17} \longrightarrow \text{Cọc 2 Domino (MOTO2)} \longrightarrow \text{Cuộn dây Động cơ} \longrightarrow \text{Cọc 1 Domino (MOTO1)} \longrightarrow \text{Chân D qua S của Q12} \longrightarrow \text{GND}$$
+
+
+* Động cơ nhận trọn vẹn điện áp $24\text{V}$ và quay thuận hết công suất.
+
+---
+
+### Giai đoạn 4: Khi ngắt PWM (Bảo vệ dập xung cuộn cảm)
+
+Khi MCU hạ tín hiệu $D1$ xuống $0\text{V}$ (ngắt $Q12$ để điều tốc):
+
+1. **Khóa FET:** $S1$ tụt về $0\text{V} \rightarrow Q14$ dẫn kéo Gate $Q12$ xả xuống $GND \rightarrow Q12$ lập tức **TẮT**.
+2. **Hiện tượng cảm ứng:** Cuộn dây bên trong động cơ tích trữ từ trường sẽ sinh ra một suất điện động tự cảm chống lại sự giảm dòng, khiến cực $MOTO1$ bị đẩy điện áp vọt lên cực cao ($> 40\text{V}$).
+3. **Đường xả dập xung qua Diode D10:**
+* Điện áp tại $MOTO1$ cao hơn $24\text{V} \rightarrow$ Diode Schottky **$D10 (SR560)$** lập tức bị phân cực thuận.
+* Dòng điện tự cảm phóng thẳng từ $MOTO1 \rightarrow$ qua $D10 \rightarrow$ trả ngược năng lượng về thanh ray nguồn $24\text{V}$ và nạp vào tụ đệm $U4 (1000\mu\text{F})$.
+* Toàn bộ gai điện áp cao được dập tắt an toàn, bảo vệ cực Drain của $Q12$ không bị đánh thủng.
 
 
 
