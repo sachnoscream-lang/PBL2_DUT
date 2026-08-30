@@ -3,7 +3,7 @@
 adapter 24V 4A
 tăng tốc 2-3 m/s
 
-
+cần cập nhật lại danh sách linh kiện ở trong eassyeda
 =================================================
 
 
